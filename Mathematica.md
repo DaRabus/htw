@@ -1,3 +1,4 @@
+
 # Mathematica Cheat Sheet
    ## 0 Konstanten ##
    Lichtgeschwindigkeit im Vakuum
@@ -210,4 +211,18 @@ Pattern bezeichnet. Auf der rechten Seite von “:=” steht dann die eigentlich
    ```
    InverseFourierTransform[Sin[w]*Exp[-Abs[w]], w, t, FourierParameters -> {1, -1}]
    ```
-  
+ 
+ ## Systembegriffe ##
+Zuerst sollte man am besten jeweils die Funktionen definieren, da man diese anschliessend einfacher aufrufen kann. Die Eckigen Klammern dabei nicht vergessen, vor allem im Bezug auf die Trigonometrischen Befehle werden diese oftmals vergessen.
+
+### Dirac Delta (Impulsfunktion) ###
+Der Dirac Delta oder von uns als Impulsfunktion bezeichnet, ist nur an der Stelle `n = 0 --> 1` ansonsten ist dieser 0. Plot funktioniert bei disen Funktionen am besten mit dem `DiscretePlot[expr,{n,nmax}]`
+
+    DiracDelta[1] = 0
+    DiracDelta[0] = DiracDelta[0]
+    DiscretePlot[DiracDelta[t], {t, -1, 1}]
+Da diese Funktion aber bei `DiracDelta[0]` von Mathematica unenvoled bleibt müssen wir für die Darstellung des Dirac Impulses auf eine andere Funktion zugreifen.
+
+    Table[DiscreteDelta[n], {n, -2, 2}] = {0, 0, 1, 0, 0}
+    DiscretePlot[DiscreteDelta[n], {n, -1, 1}]
+![Discrete Delta](http://rabus.ddns.net/bilder/Markdown/DiscreteDelta.jpg)
