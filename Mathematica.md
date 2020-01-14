@@ -96,13 +96,7 @@ Pattern bezeichnet. Auf der rechten Seite von “:=” steht dann die eigentlich
    FindMaximum[x Cos[x], {x, 2}]
    FindMaximum[{x Cos[x], 1 <= x <= 15}, {x, 7}]
    ```
-   Gibt das Maximum der Funktion an. Mit {x, 2} wird die suche bei x=2 gestartet und nimmt das nächste maximum in der Nähe. Die suche kann noch weiter eingegrenzt werden. 
-   ### Signal ###
-   Fundamentale Periode
-   ```
-   FunctionPeriod[2 Cos[3 x], x]
-   ```
-   
+   Gibt das Maximum der Funktion an. Mit {x, 2} wird die suche bei x=2 gestartet und nimmt das nächste maximum in der Nähe. Die suche kann noch weiter eingegrenzt werden.    
    
    ## 3 Plot ##
    
@@ -226,3 +220,36 @@ Da diese Funktion aber bei `DiracDelta[0]` von Mathematica unenvoled bleibt müs
     Table[DiscreteDelta[n], {n, -2, 2}] = {0, 0, 1, 0, 0}
     DiscretePlot[DiscreteDelta[n], {n, -1, 1}]
 ![Discrete Delta](http://rabus.ddns.net/bilder/Markdown/DiscreteDelta.jpg)
+### UnitStep (Schrittfunktion) ###
+Die Schrittfunktion ist wie die Impulsfunktion ein Spezialfall, diese Funktion verhält sich jedoch so, dass sie bis 0, 0 ist und anschliessend immer 1.
+
+    Plot[UnitStep[x], {x, -3, 3}, PlotStyle -> Thick]
+![Unitstep](http://rabus.ddns.net/bilder/Markdown/unitstep.jpg)
+### Unit-Box (Rechteck Funktion) ###
+Die Rechteck Funktion wird in Mathematica mit der Unit Box Funktion dargestellt. Diese geht von `-0.5` bis `0.5` . Verschiebungen funktionieren wie gewohnt. Negativ nach Rechts und positiv nach links.
+
+    Plot[UnitBox[x], {x, -1, 1}]
+![Rechteckfunktion](http://rabus.ddns.net/bilder/Markdown/box.jpg)
+### Unit-Triangle (Dreieck Funktion) ###
+Die Dreieck Funktion wird ähnlich wie die Rechteck Funktion dargestellt und verhält sich gleich. Verschiebungen funktionieren wie gewohnt. Negativ nach Rechts und positiv nach links.
+
+    Plot[UnitTriangle[x], {x, -2, 2}]
+
+![enter image description here](http://rabus.ddns.net/bilder/Markdown/dreie.jpg)
+### Signale darstellen ###
+Ein kleines Beispiel wie man nun Signale darstellen kann die z.B aus mehreren Deltas bestehen.
+
+    DiscretePlot[DiscreteDelta[-2 + n] - 2 DiscreteDelta[-1 + n] - DiscreteDelta[n] +DiscreteDelta[1 + n] + UnitStep[n - 1] - UnitStep[1], {n, -5, 5}]
+![Discret Signal Example](http://rabus.ddns.net/bilder/Markdown/signaldiscret.jpg)
+### Periodizität von Signalen ###
+Es gibt einen sehr nützlichen Befehl in Mathematica um die kleinste Periode einer Funktion herauszufinden.
+
+    FunctionPeriod[Sin[x], x] = 2 \[Pi]   
+### Faltung von Signalen (Convolve) ###
+Die Faltung in Mathematica funktioniert mi dem Englischem Begriff `Convolve`
+
+    Convolve[DiracDelta[x], f[x], x, y] = f[y]
+Die Faltung funktioniert Graphisch sowie auch rechnerisch.
+
+    Plot[Convolve[UnitBox[x], UnitTriangle[x], x, t], {t, -2, 2}]
+![Faltung Graphisch](http://rabus.ddns.net/bilder/Markdown/faltgr.jpg)
