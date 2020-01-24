@@ -253,3 +253,31 @@ Die Faltung funktioniert Graphisch sowie auch rechnerisch.
 
     Plot[Convolve[UnitBox[x], UnitTriangle[x], x, t], {t, -2, 2}]
 ![Faltung Graphisch](http://rabus.ddns.net/bilder/Markdown/faltgr.jpg)
+## Komplexe Zahlen ##
+Für die Komplexen Zahlen ist Mathematica das NonPlusUltra. Wir werden hier alle nötigen oder möglichen Funktionen Auflisten.
+
+### Argument bzw Winkel ###
+Um eine Komplexe Zahl in Polarkoordinaten darzustellen benötigt man den Phasenwinkel .
+
+    Arg[1 + I] = \[Pi]/4
+### Real/Imanigär Teil berechnen ###
+Den Real/Im Teil kann man mit folgendem Befehl zeigen.
+
+    ReIm[5 + 12 I] = {5, 12}
+
+ ### Betrag einer Zahl ###
+ Den Betrag einer Zahl kann mit folgendem Befehl zeigen. Die normale Formel wäre ja:
+ |x| = sqrt(x^2 + y^2)
+
+    Abs[5 + 12 I] = 13
+
+ ### Der Komplex Konjugierte Wert ###
+ Den Komplex Konjugierten Wert einer Komplexen Zahl erhält man wie folgt.
+ 
+
+    Conjugate[1 + I] = 1 - I
+### Komplex Expand für Komplexe Umwandlung ###
+Den folgenden Befehl nutzen wir für die Umwandlung in die Euler Formeln.
+
+    ComplexExpand[Sin[x + I y]] = Cosh[y] Sin[x] + I Cos[x] Sinh[y]
+
